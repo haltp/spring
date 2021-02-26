@@ -7,17 +7,20 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import emp.EmpDAO;
-import emp.EmpVO;
+import com.company.yedam.emp.EmpDAO;
+import com.company.yedam.emp.EmpVO;
 
 /**
  * Handles requests for the application home page.
+ * 이게 contrller
+ * 매서드 추가가능
  */
 @Controller
 public class HomeController {
@@ -29,6 +32,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		//앞으로 sysout대신 logger.info써라
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -41,10 +45,4 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/ajaxEmpList")
-	@ResponseBody
-	public List<EmpVO> ajaxEmpList(){
-		return EmpDAO.getInstance().selectList();
-		
-	}
 }
